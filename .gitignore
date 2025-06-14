@@ -1,0 +1,26 @@
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# SQL tools/clients cache
+*.log
+*.sqlite
+*.db
+*.bak
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Editor/IDE files
+.vscode/
+
+# Output or temp folders
+output/
+temp/
+logs/
+*.tmp
+*.cache
