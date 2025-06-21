@@ -18,7 +18,7 @@ SQL is used to communicate with a database—primarily for querying, updating, a
 - **DBMS**: Manages and organizes how the database operates  
 - **Server**: The physical or cloud location where the database resides
 
-![alt text](<Screenshot 2025-06-15 at 00.23.02-1.png>)
+![alt text](<Resources/Images/DBMSandSQLServer.png>)
 
 ---
 
@@ -54,4 +54,8 @@ SQL is used to communicate with a database—primarily for querying, updating, a
 > - The rest (Key-Value, Column-Based, Graph, Document) are commonly grouped as **NoSQL Databases**.
 
 ---
-
+## **Database Structure**
+Hierarchy of the database
+starting point is server, and inside the each server there can be multiple , the server can host multiple databases. The next level i.e., in each data base we can have multiple schemas, schemas is like  a category or a logical container that can be used to group related objects. And each schema can have multiple objects like tables.
+Tables: It is like spreadsheets, tables organize the data into columns, the column name defines the data that is stored inside it.Columns are some called a fielts. rows are sometimes called as records, this is where the actual data is stored. One important colum is called a primary key and it is very important to have a unique identifier for each row.
+Each value of each column stores specific datatypes like Numeric, Text, Datetime etc.
