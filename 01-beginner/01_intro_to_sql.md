@@ -18,7 +18,7 @@ SQL is used to communicate with a database—primarily for querying, updating, a
 - **DBMS**: Manages and organizes how the database operates  
 - **Server**: The physical or cloud location where the database resides
 
-![alt text](<Resources/Images/DBMSandSQLServer.png>)
+![DBMSandSQLServer](<Resources/Images/DBMSandSQLServer.png>)
 
 ---
 
@@ -49,13 +49,62 @@ SQL is used to communicate with a database—primarily for querying, updating, a
 - Schema-flexible; each document can have a different structure.
 - 📌 Example: `MongoDB`
 
+![DBMSandSQLServer](<Resources/Images/TypesofDatabases.png>)
+
 > **📝 Note:**  
 > - **Relational Databases** are often referred to as **SQL Databases**.  
 > - The rest (Key-Value, Column-Based, Graph, Document) are commonly grouped as **NoSQL Databases**.
 
 ---
+---
+
 ## **Database Structure**
-Hierarchy of the database
-starting point is server, and inside the each server there can be multiple , the server can host multiple databases. The next level i.e., in each data base we can have multiple schemas, schemas is like  a category or a logical container that can be used to group related objects. And each schema can have multiple objects like tables.
-Tables: It is like spreadsheets, tables organize the data into columns, the column name defines the data that is stored inside it.Columns are some called a fielts. rows are sometimes called as records, this is where the actual data is stored. One important colum is called a primary key and it is very important to have a unique identifier for each row.
-Each value of each column stores specific datatypes like Numeric, Text, Datetime etc.
+
+Databases follow a hierarchical structure:
+
+1. **Server**: The starting point. A server can host **multiple databases**.
+2. **Database**: Each database can contain **multiple schemas**.
+3. **Schema**: A logical container that groups related objects like tables, views, etc.
+4. **Table**: 
+   - Think of a table like a spreadsheet with **rows** (records) and **columns** (fields).
+   - **Columns** define the type of data (e.g., Name, Date, Price).
+   - **Rows** store the actual data.
+   - One column is typically designated as the **Primary Key**, a unique identifier for each row.
+   - Each column has a specific **data type**: `INTEGER`, `VARCHAR`, `DATETIME`, etc.
+
+![DBMS and SQL Server](<Resources/Images/DatabaseStructure.png>)
+
+---
+
+## **Types of SQL Commands**
+
+SQL commands are grouped into different categories:
+
+### 🔹 **DDL (Data Definition Language)**
+Used to define and modify database structures like tables and schemas.
+
+- `CREATE`: Create new tables or objects
+- `ALTER`: Modify existing structures
+- `DROP`: Delete tables or structures
+
+### 🔹 **DML (Data Manipulation Language)**
+Used to manipulate the data stored inside tables.
+
+- `INSERT`: Add new records
+- `UPDATE`: Modify existing records
+- `DELETE`: Remove records
+
+### 🔹 **DQL (Data Query Language)**
+Used to query and retrieve data.
+
+- `SELECT`: Ask questions to the database and retrieve answers (records)
+
+---
+
+## **Why Are We Learning SQL?**
+
+1. **To Talk to Data**: SQL is the universal language to interact with data.
+2. **High Demand**: Almost every company using data relies on SQL.
+3. **Industry Standard**: SQL is foundational in Data Science, Analytics, and Engineering.
+
+---
