@@ -1,4 +1,4 @@
-# ✏️ Data Manipulation Language (DML)
+# Data Manipulation Language (DML)
 
 **DML (Data Manipulation Language)** is used to **modify, insert, update, or delete** data in the database tables.
 
@@ -35,7 +35,7 @@ WHERE condition;
 
 ---
 
-## ✏️ `UPDATE` – Modify Existing Rows
+## `UPDATE` – Modify Existing Rows
 
 ```sql
 UPDATE table_name
