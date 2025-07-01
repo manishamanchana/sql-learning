@@ -85,7 +85,7 @@ Comparison operators are used in SQL to **compare two values or expressions**. T
 Expression  Operator  Expression
 ```
 
-This allows you to compare two columns, values, functions, or even subqueries.
+This allows us to compare two columns, values, functions, or even subqueries.
 
 ---
 
