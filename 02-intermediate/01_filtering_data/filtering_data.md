@@ -75,7 +75,7 @@ These operators make it easier to target specific rows in SQL queries with preci
 
 # SQL Comparison Operators
 
-Comparison operators are used in SQL to **compare two values or expressions**. These comparisons return a boolean value (`TRUE` or `FALSE`) and are commonly used in `WHERE` clauses or conditional logic.
+Comparison operators are used in SQL to **compare two values or expressions**. These comparisons are commonly used in `WHERE` clauses or conditional logic.
 
 ---
 
@@ -136,4 +136,8 @@ Compare the result of a **subquery** to a fixed value. Useful in analytical quer
 
 ---
 
- These comparisons are powerful tools to build flexible filtering and conditional logic in your SQL queries.
+ These comparisons are powerful tools to build flexible filtering and conditional logic in the SQL queries.
+
+= operator : checks if two values are equal
+ 
+
