@@ -138,6 +138,77 @@ Compare the result of a **subquery** to a fixed value. Useful in analytical quer
 
  These comparisons are powerful tools to build flexible filtering and conditional logic in the SQL queries.
 
-= operator : checks if two values are equal
- 
+# SQL Logical Operators
+
+Logical operators in SQL are used to **combine multiple conditions** in a `WHERE` clause to refine your queries.
+
+---
+
+##  Overview of Logical Operators
+
+| Operator  | Description                                   |
+|-----------|-----------------------------------------------|
+| `AND`     | All conditions must be TRUE                   |
+| `OR`      | At least one condition must be TRUE           |
+| `NOT`     | Excludes rows that match a specified condition|
+| `BETWEEN` | Checks if a value falls within a range        |
+| `IN`      | Checks if a value exists in a list            |
+| `LIKE`    | Searches for a pattern in text                |
+
+---
+
+##  Example Queries
+
+###  AND
+SQL is very restrictive when this condition is used, both of the conditions must be true for the query to include the perticular row in the result i.e., BOTH the conditions must be TRUE
+
+```sql
+SELECT * FROM table_name
+WHERE condition1 AND condition2;
+```
+
+###  OR
+less restrictive than AND condition, it is enough to have one condition true in order to keep the row in the result i.e., atleat one condition must be TRUE
+
+```sql
+SELECT * FROM table_name
+WHERE condition1 OR condition2;
+```
+
+###  NOT
+
+it is a reverse operator or it excludes matching values, it is not used to combine 2 operators, it can be used with only one condition
+
+```sql
+SELECT * FROM table_name
+WHERE NOT condition;
+```
+
+###  BETWEEN
+the lowerbound and upper bound are inclusive
+
+```sql
+SELECT * FROM table_name
+WHERE column_name BETWEEN lower_bound AND upper_bound;
+```
+
+###  IN
+
+Tip: Use IN instead of OR for multiple values in the same column to simplify SQL
+
+```sql
+SELECT * FROM table_name
+WHERE column_name IN list_of_column_values;
+```
+
+###  LIKE
+
+```sql
+SELECT * FROM Employees
+WHERE FirstName LIKE 'A%';  -- Names starting with A
+```
+
+---
+
+ These operators help build complex filters and conditions to retrieve exactly the data you need.
 
