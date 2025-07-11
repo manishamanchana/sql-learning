@@ -18,6 +18,7 @@ SQL Joins connect rows from two tables based on a related column, helping to:
    Validate the existence or non-existence of records in another table.
 
 ![Joins Overview](image.png)
+
 ---
 
 ## Join Types
