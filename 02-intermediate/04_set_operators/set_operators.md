@@ -12,12 +12,27 @@ Set operators perform **row-level combination** of two queries. The number of co
 
 ## Rules for Set Operators
 
-1. Both queries must return the **same number of columns**.
-2. Columns must have **compatible data types** (e.g., you can’t combine `VARCHAR` with `INT` directly).
-3. The **column names** in the final output are taken from the **first query**.
+1. **SQL Clauses**:
+   - SET operators can be used in clauses like `WHERE`, `JOIN`, `GROUP BY`, and `HAVING`.
+   - `ORDER BY` can be used **only once** at the **end of the final query**.
+
+2. **Number of Columns**:
+   - Both queries must return the **same number of columns**.
+
+3. **Data Types**:
+   - Columns must have **compatible data types** (e.g., you can’t combine `VARCHAR` with `INT`).
+
+4. **Order of Columns**:
+   - The **order of columns** must match in both queries.
+
+5. **Column Aliases**:
+   - The column names in the final result are **taken from the first query**.
+
+6. **Correct Columns**:
+   - Even if all syntactic rules are followed, using incorrect columns can lead to **incorrect results**.
+   - It's the **coder’s responsibility** to ensure meaningful and valid column selections.
 
 ---
-
 ## Types of Set Operators
 
 | Operator     | Description                                                                 |
@@ -30,6 +45,34 @@ Set operators perform **row-level combination** of two queries. The number of co
 > `EXCEPT` is known as `MINUS` in some database systems like Oracle.
 
 ---
+## Operator-Specific Notes
+
+### `UNION`
+- Returns all **distinct and unique** rows from both queries.
+- Removes duplicate rows.
+- The **order of queries does not affect** the result.
+- Use when you want to **merge and deduplicate** datasets.
+
+### `UNION ALL`
+- Returns **all rows**, including duplicates.
+- Faster than `UNION`, because it **doesn't sort or remove duplicates**.
+- Useful for **performance** when you're sure there are no duplicates.
+- Can be used in **data quality checks** to help **identify duplicates**.
+
+**UNION vs UNION ALL**:
+- Use `UNION` when you want **unique results**.
+- Use `UNION ALL` for **faster performance** when duplicates don't matter or are required.
+
+### `EXCEPT`
+- Returns **distinct rows** from the **first query** that are **not in the second**.
+- The **order of queries matters** – switching them changes the result.
+
+### `INTERSECT`
+- Returns only the rows that are **common to both queries**.
+- The **order of queries does not matter**.
+
+---
+
 ## Syntax for SQL Set Operators
 
 ```sql
@@ -55,42 +98,22 @@ FROM Table2;
 - The data types of each column should be compatible across both queries.
 - The result takes column names from the **first `SELECT` statement**.
 
-RULES OF SET OPERATORS
+## Use Cases for Set Operators
 
-#1 Rule | SQL CLAUSES
-- SET operators can be used almost in all clauses like WHERE|JOIN|GROUP BY|HAVING
-- ORDER BY  it is allowed to use only once at the end of query
+### Union:
+- Combine similar data **before analysis**, such as merging results from different regions or time periods.
+- `UNION` or `UNION ALL` can be used to prepare datasets from multiple sources.
+- `INTERSECT` and `EXCEPT` are helpful in **existence checks**, **quality controls**, and **comparative reports**.
 
-#2 Rule | Number of columns
-- The number of columns in each query must be the same
+### Except:
+- We can use 
 
-#3 Rule | Data Types
-Data types of columns in each query must match
 
-#4 RULE | ORDER OF COLUMNS
-- the order of the columns in each query must be the same 
 
-#5 RULE | COLUMN ALIASES
-The column names in the result are determined by the column names specified in the first query, i.e., the 1st query controls the column names
+---
 
-#6| CORRECT COLUMNS
-- Even if the rules are met and SQL doesn't give any errors and the results are still incorrect it is the responibility of the coder not SQL, incorrect column selection will lead to incorrect results.
+## Best Practices
 
-UNION
-- returns all distinct and unique rows from both, removes all duplicate rows from the result
-Union makes sure that each row appeares only once.
-- The order of queries does not effect the results.
-
-Union All
-- returns all the rows from both the queries, it does not remove any duplicates instead shows all the rows as it is
-
-union vs union all
-union all is faster that union, hence if we know that there are no duplicates it is better to use union all.
-union all can also be used to find duplicates for data quality checks etc
-
-EXCEPT:
-- returns the distinct rows from the first query that are not present in the second query
-- the order of the queries affect the end results it is very important
-
-INTERSECT
-Returns only the rows that are common in both queries
+- Avoid using `SELECT *` with set operators. Always **specify the exact columns** to ensure clarity and prevent mismatches.
+- Be cautious about **data types and column order**—a mismatch won't throw an error in all systems but can cause logic issues.
+- Test each individual query separately before combining them to verify their structure and content.

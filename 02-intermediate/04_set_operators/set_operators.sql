@@ -46,3 +46,59 @@ SELECT
     FirstName,
     LastName
 FROM Sales.Customers
+
+-- Find the employees who are also customers
+
+SELECT
+    FirstName,
+    LastName
+FROM Sales.Employees
+
+INTERSECT
+
+SELECT
+    FirstName,
+    LastName
+FROM Sales.Customers
+
+/*
+Orders are stored in seperate tables(Orders and OrderArchive).
+Combine all orders into one report without duplicates.
+*/
+
+SELECT 
+    'Orders' AS SourceTable
+      ,[OrderID]
+      ,[ProductID]
+      ,[CustomerID]
+      ,[SalesPersonID]
+      ,[OrderDate]
+      ,[ShipDate]
+      ,[OrderStatus]
+      ,[ShipAddress]
+      ,[BillAddress]
+      ,[Quantity]
+      ,[Sales]
+      ,[CreationTime]
+FROM
+Sales.Orders
+
+UNION
+
+SELECT
+    'OrdersArchive' AS SourceTable
+      ,[OrderID]
+      ,[ProductID]
+      ,[CustomerID]
+      ,[SalesPersonID]
+      ,[OrderDate]
+      ,[ShipDate]
+      ,[OrderStatus]
+      ,[ShipAddress]
+      ,[BillAddress]
+      ,[Quantity]
+      ,[Sales]
+      ,[CreationTime]
+FROM
+Sales.OrdersArchive
+ORDER BY OrderID
