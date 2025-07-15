@@ -100,20 +100,46 @@ FROM Table2;
 
 ## Use Cases for Set Operators
 
-### Union:
-- Combine similar data **before analysis**, such as merging results from different regions or time periods.
-- `UNION` or `UNION ALL` can be used to prepare datasets from multiple sources.
-- `INTERSECT` and `EXCEPT` are helpful in **existence checks**, **quality controls**, and **comparative reports**.
+Set operators are useful in various real-world scenarios where combining or comparing datasets is essential.
 
-### Except:
-- We can use 
+---
 
+### `UNION` / `UNION ALL`
 
+- Combine **similar datasets** before performing analysis, such as:
+  - Merging results from different regions
+  - Appending data across different time periods
+- Useful in **data consolidation** from multiple sources.
+- `UNION ALL` is often used for **performance-sensitive operations** or when duplicates are meaningful.
+- Can assist in **data quality checks** by comparing datasets for duplicate detection.
+
+---
+
+### `EXCEPT`
+
+- Identify **differences** between two data batches.
+- Perform **data completeness checks**:
+  - When transferring data from **Database A** to **Database B**, running an `EXCEPT` query between the two datasets should ideally return an **empty result**—indicating a complete and accurate transfer.
+- Helps detect **discrepancies** between source and target systems during migrations or ETL operations.
+- Useful in **data quality validation** to ensure consistency across environments.
+
+---
+
+### `INTERSECT`
+
+- Validate **data consistency** by extracting only the **common rows** from both datasets.
+- Can be used to confirm overlap or shared entries across datasets or systems.
+- Helpful in **existence checks** during joins or reconciliation tasks.
 
 ---
 
 ## Best Practices
 
-- Avoid using `SELECT *` with set operators. Always **specify the exact columns** to ensure clarity and prevent mismatches.
-- Be cautious about **data types and column order**—a mismatch won't throw an error in all systems but can cause logic issues.
-- Test each individual query separately before combining them to verify their structure and content.
+- Avoid using `SELECT *` with set operators. Always **list the required columns explicitly** to maintain control over structure and avoid errors.
+- Ensure **column order and data types match** between queries to prevent unexpected results.
+- **Test each query independently** before combining them using set operators.
+- When merging data from multiple sources, include an **additional column** (e.g., `source`) to track the origin of each row.
+- Be cautious with **duplicate rows**—understand whether your use case requires deduplication (`UNION`) or raw merging (`UNION ALL`).
+
+---
+ 
