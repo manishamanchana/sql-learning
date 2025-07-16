@@ -68,3 +68,27 @@ SELECT
 *
 FROM Sales.Orders
 WHERE MONTH(OrderDate) = 2
+
+SELECT
+OrderID,
+CreationTime,
+FORMAT(CreationTime,'MM-dd-yyy') USA_Format,
+FORMAT(CreationTime,'dd-MM-yyy') EURO_Format,
+FORMAT(CreationTime, 'dd') dd,
+FORMAT(CreationTime, 'ddd') ddd,
+FORMAT(CreationTime, 'dddd') dddd,
+FORMAT(CreationTime, 'MM') MM,
+FORMAT(CreationTime, 'MMM') MMM,
+FORMAT(CreationTime, 'MMMM') MMMM
+FROM Sales.Orders
+
+-- Show CreationTime using the following format:
+-- Day Wed Jan Q1 2025 12:34:56 PM
+
+SELECT
+OrderID,
+CreationTime,
+'Day '+FORMAT(CreationTime,'ddd MMM') +
+' Q'+DATENAME(quarter,CreationTime) + ' ' +
+FORMAT(CreationTime, 'yyyy hh:mm:ss tt') AS CustomeFormat
+FROM Sales.Orders
