@@ -18,3 +18,29 @@ FirstName+' '+COALESCE(LastName,'') AS FullName,
 Score,
 COALESCE(Score,0) + 10 AS ScoreWithBonus
 FROM Sales.Customers
+
+-- Sort the customers from lowest to highest scores,
+-- with nulls appearing last
+SELECT
+CustomerID,
+Score
+FROM Sales.Customers
+ORDER BY Score
+-- Method 1 : replacing null with a large number
+
+SELECT
+CustomerID,
+Score,
+COALESCE(Score,9999999999),
+CASE WHEN Score IS NULL THEN 1 ELSE 0 END
+FROM Sales.Customers
+ORDER BY Score
+
+-- Method 2
+
+SELECT
+CustomerID,
+Score,
+CASE WHEN Score IS NULL THEN 1 ELSE 0 END Flag
+FROM Sales.Customers
+ORDER BY CASE WHEN Score IS NULL THEN 1 ELSE 0 END, Score

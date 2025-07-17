@@ -21,14 +21,17 @@ ISNULL|COALACE
 |----|--------
 Limited to 2 values|unlimited
 Fast|slow
-different keyword for different databases SQL server->ISNULL, Oracle->NVL,MySQL->IFNULL|Available in all databases
+different keyword for different databases SQL server->ISNULL, Oracle->NVL,MySQL->IFNULL | Available in all databases
 Usecase- Handling NULLS
 Data Aggregation:
 -Handle nULL before doing data aggregations:
 SQL aggregate functions completely ignore if a value is NULL with exception of COUNT(*) which does not look at value but rows instead
 - Handle the NULLS before any mathematical operations
 - Handle the NULL before JOINING tables
-c. NULLIF
+While performing joins, if we have null in keys we get unexpected results or some entries may be missed completely.
+- Handle the NULLs before sorting the data 
+c. NULLIF :
+
 2. Check for NULLs
 does not replace values instead check if the values or NULL or NOTNULL and returns boolean values true or false
 a. IS NULL
