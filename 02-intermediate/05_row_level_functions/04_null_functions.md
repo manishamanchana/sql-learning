@@ -1,115 +1,132 @@
-NULL FUNCTIONS:
-NULL means nothing, it is not equal to anything,
-it is not:
-    - NULL is not zero
-    - NULL is not empty string
-    - NULL is not blank space
-NULL Functions can be used for
-1.Replace values:
-Replaces values form null to values or values to NULL
-a. ISNULL:
-Replaces 'NULL' with a specified value
-Syntax:
-ISNULL(value, replacement_value)
+# NULL Functions in SQL
 
-b. COALESCE:
-Returns the first non-null value from a list
-syntax: COALESCE(value1,value2,value3,...)
-if value 1 is null it replaces with value 2, if value 2 is null it replaces with vaue 3 and so on.
-ISNULL VS COALESCE
-ISNULL|COALACE
-|----|--------
-Limited to 2 values|unlimited
-Fast|slow
-different keyword for different databases SQL server->ISNULL, Oracle->NVL,MySQL->IFNULL | Available in all databases
-Usecase- Handling NULLS
-Data Aggregation:
--Handle nULL before doing data aggregations:
-SQL aggregate functions completely ignore if a value is NULL with exception of COUNT(*) which does not look at value but rows instead
-- Handle the NULLS before any mathematical operations
-- Handle the NULL before JOINING tables
-While performing joins, if we have null in keys we get unexpected results or some entries may be missed completely.
-- Handle the NULLs before sorting the data 
-c. NULLIF :
-Compares two expressions and returns:
-- NULL if they are equal and 
-- First value if they are not equal
-Syntax: NULLIF(Value1,Value2)
-Use Cases:
-Division By Zero: preventing the error of dividing by zero
-2. Check for NULLs
-does not replace values instead check if the values or NULL or NOTNULL and returns boolean values true or false
-a. IS NULL:
-Returs TRUE if the value IS NULL, else returns FALSE
-Syntax: Value IS NULL
-Use case:
-- Searching for missing data
-- Finding the unmatched rows between two tables Left anti join, right anti join
-b. IS NOT NULL
-Returs TRUE if the value IS NOT NULL, else returns FALSE
-Syntax: Value IS NOT NULL
-Use case:
-- Searching for missing data/ not missing data
+## What is NULL?
 
-
-NULL vs Empty vs Space
-
-# NULL vs Empty String vs Blank Space
-
-| Category     | NULL           | Empty String (`''`)     | Blank Space (`' '`)          |
-|--------------|----------------|--------------------------|-------------------------------|
-| **Representation** | `NULL`          | `''`                     | `' '`                         |
-| **Meaning**        | Unknown         | Known, Empty Value       | Known, Space Value            |
-| **Data Type**      | Special Marker  | String (length 0)        | String (1 or more characters) |
-| **Storage**        | Very minimal    | Occupies memory          | Occupies memory *(each space)* |
-| **Performance**    | Best            | Fast                     | Slow                          |
-| **Comparison**     | `IS NULL`       | `= ''`                   | `= ' '`                       |
-
-
-Handling Nulls
-Data plocies : Set of rules that defines how data should be handled
-Examples:
-#1 Only use NULLs and empty strings, avoid using blank spaces
-TRIM: Removes unwanted leading and trailing spaces from a string
-#2 Only use nulls and avoid using empty strings and blank spaces
-#3 Use the default value 'unknown' and avoid using nulls, empty strings and blank spaces.
-
-#2 data polict use case:
-Replacing empty strings and blanks with NULL during data preparation before inserting into a database to optimize storage and performance
-
-#3 data policy use case:
-Replacing empty strings, blanks, NULL with default value
-during data preparation before using it in reporting
-to improve readability and reduce confusion
-
-Summary:
-# NULL Functions
-
-## Overview
-- **NULLs** are special markers representing **missing values**.
-- Using NULLs can **optimize storage and performance**.
+- `NULL` represents **missing or unknown** data.
+- It is **not**:
+  - Zero (`0`)
+  - An empty string (`''`)
+  - A blank space (`' '`)
 
 ---
 
-## Common NULL Functions
+## Types of NULL Functions
 
-| Function     | Description                                           |
-|--------------|-------------------------------------------------------|
-| `COALESCE`   | Returns the first non-NULL value                     |
-| `ISNULL`     | Replaces NULL with a specified value                 |
-| `NULLIF`     | Returns NULL if the two arguments are equal          |
-| `IS NULL`    | Checks if a value is NULL → returns `TRUE`           |
-| `IS NOT NULL`| Checks if a value is not NULL → returns `FALSE`      |
+### 1. **Replace NULL Values**
+
+These functions help **replace** `NULL` values with meaningful data.
+
+#### a. `ISNULL`
+- Replaces `NULL` with a specified value.
+- **Syntax**: `ISNULL(value, replacement_value)`
+
+#### b. `COALESCE`
+- Returns the **first non-NULL** value from a list.
+- **Syntax**: `COALESCE(value1, value2, value3, ...)`
+
+> If `value1` is NULL → checks `value2`, if that is also NULL → checks `value3`, and so on.
+
+#### c. `NULLIF`
+- Compares two expressions:
+  - Returns `NULL` if they are equal.
+  - Returns the **first value** if they are not equal.
+- **Syntax**: `NULLIF(value1, value2)`
+
+> **Use Case**: Preventing **division by zero**.
 
 ---
 
-## Use Cases
+### ISNULL vs COALESCE
 
-- Handle NULLs – **Data Aggregation**
--  Handle NULLs – **Mathematical Operations**
--  Handle NULLs – **Joining Tables**
--  Handle NULLs – **Sorting Data**
--  Finding unmatched data – **Left Anti Join**
--  Enforcing **Data Policies**:
-  - Allow NULLs
-  - Set **Default Values**
+| Feature         | `ISNULL`                         | `COALESCE`                  |
+|----------------|----------------------------------|-----------------------------|
+| # of Arguments | Only 2                           | Multiple                    |
+| Speed          | Fast                             | Slightly slower             |
+| Compatibility  | DB-specific (e.g. SQL Server)    | Universal                   |
+| Use Case       | Simple NULL handling             | Complex fallbacks           |
+
+---
+
+### 2. **Check for NULLs**
+
+These functions return **boolean values** (`TRUE` or `FALSE`), instead of replacing data.
+
+#### a. `IS NULL`
+- Returns `TRUE` if the value **is NULL**, otherwise `FALSE`.
+- **Syntax**: `column_name IS NULL`
+
+**Use Cases**:
+- Search for missing data
+- Left Anti Join / Right Anti Join
+
+#### b. `IS NOT NULL`
+- Returns `TRUE` if the value **is NOT NULL**, otherwise `FALSE`.
+- **Syntax**: `column_name IS NOT NULL`
+
+---
+
+## NULL vs Empty String vs Blank Space
+
+| Category       | NULL               | Empty String (`''`)     | Blank Space (`' '`)          |
+|----------------|--------------------|--------------------------|-------------------------------|
+| Representation | `NULL`             | `''`                     | `' '`                         |
+| Meaning        | Unknown            | Known, Empty Value       | Known, Space Value            |
+| Data Type      | Special Marker     | String (length 0)        | String (length ≥ 1)           |
+| Storage        | Minimal            | Uses memory              | Uses memory (per space)       |
+| Performance    | Best               | Fast                     | Slower                        |
+| Comparison     | `IS NULL`          | `= ''`                   | `= ' '`                       |
+
+---
+
+## Handling NULLs in SQL
+
+### Why handle NULLs?
+
+- **SQL Aggregate Functions** ignore `NULL` except `COUNT(*)`.
+- Mathematical operations with `NULL` result in `NULL`.
+- Joins with `NULL` keys may yield **incomplete or unexpected** results.
+- Sorting with `NULL` values can mislead analysis.
+
+---
+
+## Data Policy Examples
+
+### Policy #1:
+- Allow only `NULL` and empty strings.
+- Avoid blank spaces.
+- Use `TRIM()` to remove leading/trailing spaces.
+
+### Policy #2:
+- Prefer `NULL` over empty strings or spaces.
+- Use `NULL` during data preparation to **optimize performance** and **storage**.
+
+### Policy #3:
+- Replace all `NULL`, empty strings, and spaces with default like `'unknown'`.
+- Useful in **reporting** for better **readability**.
+
+---
+
+## Summary
+
+### Common NULL Functions
+
+| Function        | Description                                      |
+|-----------------|--------------------------------------------------|
+| `COALESCE`      | First non-NULL value from the list               |
+| `ISNULL`        | Replace NULL with a specified value              |
+| `NULLIF`        | NULL if two values are equal                     |
+| `IS NULL`       | Checks if value is NULL → returns `TRUE`         |
+| `IS NOT NULL`   | Checks if value is NOT NULL → returns `TRUE`     |
+
+---
+
+### Use Cases for Handling NULLs
+
+- Data Aggregation
+- Mathematical Operations
+- Table Joins
+- Sorting
+- Left/Right Anti Joins
+- Data Cleaning and Preparation
+- Enforcing Data Policies
+

@@ -58,4 +58,4 @@ SELECT @@VERSION;
 
 Now the SQL Server is running on macOS via Docker and is ready to write and execute queries.
 
-Everytime you close and resteart run the command 'docker start sqlserver' to start the server
+Everytime you close and restart run the command 'docker start sqlserver' to start the server

@@ -16,10 +16,3 @@
 - **`SUBSTRING(str, start, length)`** – Extracts a substring from a specific position.
 
 ---
-
-## Numeric Functions
-
-- **`ROUND(value, decimal_places)`** – Rounds the number.
-- **`ABS(value)`** – Returns the absolute value.
-
----
