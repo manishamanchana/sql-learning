@@ -18,7 +18,9 @@ SQL is used to communicate with a database—primarily for querying, updating, a
 - **DBMS**: Manages and organizes how the database operates  
 - **Server**: The physical or cloud location where the database resides
 
-![DBMSandSQLServer](<Resources/Images/DBMSandSQLServer.png>)
+
+![DBMSandSQLServer](../Resources/Images/DBMSandSQLServer.png)
+
 
 ---
 
